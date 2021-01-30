@@ -11,21 +11,29 @@ const String morse[] = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "...."
 
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
+    digitalWrite(LED_BUILTIN, LOW);
     Serial.begin(9600);
 }
 
 void loop() {
-    String sentence = "SOS9";
+    String sentence;
+
+    Serial.print("Enter a sentence to do in morse (chars and ints): ");
+    while (Serial.available() == 0) {
+        // Waiting for user input
+    }
+
+    sentence = Serial.readString();
     sentence.toUpperCase();
-    
+    Serial.print(sentence);
+    sentence.trim();
+
     Serial.print("Morse: ");
     for (int i = 0; i < sentence.length(); i++)
     {
         charToMorse(sentence[i]);
     }
     Serial.print("\n");
-    delay(PAUSE);
-
 }
 
 void blinkL(int time) {
@@ -38,7 +46,8 @@ void blinkL(int time) {
 void charToMorse(char ch)
 {
     //assumes uppercase input
-    int index;
+    int index = -1;
+    
     if(ch >= 'A' && ch <= 'Z')
     {
         index = ch - 65;
@@ -47,7 +56,7 @@ void charToMorse(char ch)
     {
         index = ch - 22;
     }
-    
+
     if (index >=0 && index <= 35)
     {
         String morseCode = morse[index];
@@ -66,7 +75,7 @@ void charToMorse(char ch)
             }
         }
     }
-    else //Something not in the alpabet AKA space
+    else // Not letter or num -> space
     {
         Serial.print(" | ");
         delay(PAUSE);
