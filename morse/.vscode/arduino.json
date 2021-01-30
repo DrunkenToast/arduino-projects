@@ -1,4 +1,6 @@
 {
     "programmer": "AVR ISP",
-    "board": "arduino:avr:uno"
+    "board": "arduino:avr:uno",
+    "port": "COM3",
+    "sketch": "morse.ino"
 }
