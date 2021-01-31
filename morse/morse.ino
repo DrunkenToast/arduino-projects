@@ -68,7 +68,7 @@ void charToMorse(char ch)
                 Serial.print(".");
                 blinkL(SHORT);
             }
-            if(morseCode[i] == '-')
+            else
             {
                 Serial.print("-");
                 blinkL(LONG);
