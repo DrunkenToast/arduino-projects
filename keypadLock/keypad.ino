@@ -67,20 +67,17 @@ char readUser()
 {
     char key;
 
-  
-
     do
     {
         Serial.print("Pick a user (A, B, C or D): ");
         key = keypad.waitForKey();
         Serial.print(key);
 
-        if(!(key >= 'A' && key <= 'D'))
+        if (!(key >= 'A' && key <= 'D'))
+        {
             Serial.print("\nNot a user! Try again.\n");
-
+        }
     } while (!(key >= 'A' && key <= 'D'));
-    
-
 
     return key;
 }
