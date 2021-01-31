@@ -29,8 +29,6 @@ void setup()
 
 void loop()
 {
-    char key = keypad.getKey();
-
     //input
     user = readUser();
     readPass(user, &passAttempt);
