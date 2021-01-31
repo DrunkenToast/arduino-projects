@@ -1,7 +1,8 @@
 #include <Keypad.h>
 
-const byte ROWS = 4;
-const byte COLS = 4;
+#define ROWS 4
+#define COLS 4
+
 char keys[ROWS][COLS] = {
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
@@ -66,14 +67,20 @@ char readUser()
 {
     char key;
 
-    Serial.print("Pick a user (A, B, C or D): ");
-    key = keypad.waitForKey();
+  
 
-    while (!(key >= 'A' && key <= 'D'))
+    do
     {
-        Serial.print("\nNot a user! Try again (A, B, C or D): ");
+        Serial.print("Pick a user (A, B, C or D): ");
         key = keypad.waitForKey();
-    }
+        Serial.print(key);
+
+        if(!(key >= 'A' && key <= 'D'))
+            Serial.print("\nNot a user! Try again.\n");
+
+    } while (!(key >= 'A' && key <= 'D'));
+    
+
 
     return key;
 }
